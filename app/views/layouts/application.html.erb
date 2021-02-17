@@ -12,8 +12,6 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   </head>
-
-  <body>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +24,21 @@
     </li>
   </ul>
 </header>
-
+  <body>
+    <div class="container pt-5">
+      <div class="row pt-5">
+        
+      <% Category.all.each do |category| %>
+      <div class="col-3 pt-3">
+  <div class="card bg-light">
+    <div class="card-body text-center">
+      <p class="card-text"><%= category.title %></p>
+    </div>
+  </div>
+  </div>
+  <% end %>
+</div>
+</div>
 
     <%= yield %>
   </body>
