@@ -1,8 +1,8 @@
    <div class="container pt-5">
     <div class="row">
     <% Category.all.each do |category| %>
-  <div class="col-3 pt-3">
 
+  <div class="col-3 pt-3">
     <div class="card h-100">
       <img
         src="<%= category.image %>"
@@ -10,7 +10,7 @@
         alt="..."
       />
       <div class="card-body">
-        <p><%= category.title %></p>
+        <p><%= link_to category.title, category_path(category) %></p>
       </div>
     </div>
   </div>
