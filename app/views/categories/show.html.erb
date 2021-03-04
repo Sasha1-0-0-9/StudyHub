@@ -1,0 +1,13 @@
+<div class="row pt-5">
+     		<% @category.tasks.each do |task| %>
+     <div class="card shadow mb-3">
+      <div class="card-header">
+          <h4><%= link_to task.title, task_path(task) %></h4>
+          <div class="card-body">
+        <p class="card-text"><%= task.description %></p>
+        <p class="badge bg-light text-dark"><%= number_to_currency(task.price, unit: "UAH", separator: ",", delimiter: " ", format: "%n %u") %></p>
+   </div>
+</div>
+</div>
+     		<% end %>
+</div>
