@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p class="pt-5">
+	<h5> Замовник </h5>
+		<p><%= User.find(@task.author_id).email %></p>
+  <strong>Завдання</strong>
+
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong>Опис:</strong>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>Ціна:</strong>
+  <%= @task.price %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
