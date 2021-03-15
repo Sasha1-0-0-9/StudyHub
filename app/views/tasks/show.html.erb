@@ -18,5 +18,7 @@
   <%= @task.price %>
 </p>
 
+<%= link_to 'Take this shit', task_orders_path(task_id: @task.id), method: :post, class: 'btn btn-success' %>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

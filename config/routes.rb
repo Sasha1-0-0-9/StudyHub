@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  
-  resources :tasks
+  resources :tasks do
+  	  resources :orders, only: %i[create]
+  	end
+
+  	
+
   get 'users/profile'
   #devise_for :users#, ActiveAdmin::Devise.config
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
