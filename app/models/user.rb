@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 
 	enum role: [:student, :implementer]
+	  has_many :owned_tasks, :class_name => "Task", :foreign_key => :owner
+  has_many :offers 
+  has_many :interested_products, :through => :offers
 
 	validates :role, presence: true 
 
