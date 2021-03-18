@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :owned_tasks, class_name: 'Task', foreign_key: :owner
   has_many :offers
   has_many :interested_products, through: :offers
+    has_one_attached :avatar
 
   has_many :comments
 
@@ -16,6 +17,14 @@ class User < ApplicationRecord
 
   def set_default_role
     self.role ||= student
+  end
+
+  def avatar_thumbnail
+    if avatar.attached?
+    avatar.variant(resize: "150x150!").processed
+    else
+    "/default_profile.jpg"
+    end 
   end
 
   # Include default devise modules. Others available are:
