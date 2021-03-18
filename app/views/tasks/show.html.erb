@@ -1,24 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p class="pt-5">
-	<h5> Замовник </h5>
-		<p><%= User.find(@task.author_id).email %></p>
-  <strong>Завдання</strong>
-
-  <%= @task.title %>
+<h1><%= @task.title %></h1>
+	 <h5><%= @task.category.parent.title %> / <%= @task.category.title %></h5>
+	<h6> Замовник: <%= User.find(@task.author_id).email %></h6>
 </p>
 
 <p>
   <strong>Опис:</strong>
   <%= @task.description %>
 </p>
-
+ 
 <p>
   <strong>Ціна:</strong>
   <%= @task.price %>
 </p>
+ <% if current_user.role == 'implementer' %>
+<div><%= link_to 'Claim task', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
+<% end %>
+<br>
 
-<%= link_to 'Take this shit', task_orders_path(task_id: @task.id), method: :post, class: 'btn btn-success' %>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+ <div class="col-lg-6 sm-12">
+   <%= render 'comments/comment_show' %>
+   </div>

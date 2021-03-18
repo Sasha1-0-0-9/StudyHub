@@ -1,0 +1,19 @@
+<div class= "pt-5">
+	<h3>	Чому саме ти повинен отримати це завдання? </h3>
+<%= form_for @comment do |f| %>
+<% if @comment.errors.any? %>
+			<% @comment.errors.full_messages.each do |message| %>
+			<h4 class="alert-danger"> <%= message %> </h4>
+			<% end %>
+		<% end %>
+<div class="pt-5">
+	<%= f.label :body %>
+	<%= f.text_area :body, class: 'form-control', rows: "2" %>
+</div>
+<br>
+
+<%= f.hidden_field :user_id %>
+<%= f.hidden_field :task_id %>
+<div><%= f.submit %></div>
+<% end %>
+</div>

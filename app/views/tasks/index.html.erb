@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Category</th>
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
+        <td><%= task.category %></td>
         <td><%= task.title %></td>
         <td><%= task.description %></td>
         <td><%= task.price %></td>

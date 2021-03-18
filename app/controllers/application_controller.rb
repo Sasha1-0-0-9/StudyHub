@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
   end
 
-
   def current_order
     Order.find_or_create_by(user: current_user)
-  end	
+  end
 end

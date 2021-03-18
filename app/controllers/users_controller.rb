@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def profile
-  		@user = current_user
+    @user = current_user
   end
 
   def save_profile
@@ -11,8 +11,7 @@ class UsersController < ApplicationController
 
   private
 
-
   def user_params
-  	params.require(:user).permit(:email, :first_name, :last_name, :birthday)
+    params.require(:user).permit(:email, :first_name, :last_name, :birthday)
   end
 end

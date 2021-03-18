@@ -1,13 +1,17 @@
-<div class="row pt-5">
-     		<% @category.tasks.each do |task| %>
-     <div class="card shadow mb-3">
-      <div class="card-header">
-          <h4><%= link_to task.title, task_path(task) %></h4>
-          <div class="card-body">
-        <p class="card-text"><%= task.description %></p>
-        <p class="badge bg-light text-dark"><%= number_to_currency(task.price, unit: "UAH", separator: ",", delimiter: " ", format: "%n %u") %></p>
-   </div>
-</div>
-</div>
-     		<% end %>
+<div class="container pt-5">
+    <div class="row">
+  <% Category.children_of(@category).each do |sub_category| %>
+  <div class="col-3 pt-3">
+    <div class="card h-100">
+      <img
+        src="<%= sub_category.image %>"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <p><%= link_to sub_category.title, show_tasks_category_path(sub_category) %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
