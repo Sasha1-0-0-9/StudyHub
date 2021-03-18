@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/main', to: 'pages#main'
   resources :tasks do
     resources :orders, only: %i[create]
   end
