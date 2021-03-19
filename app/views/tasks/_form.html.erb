@@ -1,3 +1,5 @@
+<div class="pt-5" style="text-align: center;">
+  <h4> THIS 200 IQ DESIGN WILL BE CHANGED SOON </h4>
 <%= form_with(model: task) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
@@ -23,8 +25,9 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'form-control', rows: "3" %>
   </div>
+  <br>
 
   <div class="field">
     <%= form.label :price %>
@@ -35,3 +38,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>

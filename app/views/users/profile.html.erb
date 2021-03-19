@@ -1,10 +1,13 @@
 <!-- TODO -->
 
 <div class="pt-5">
+  <br>
 <h1><%= current_user.email %></h1>
+    <%= image_tag(current_user.avatar_thumbnail) %>
 <h1><%= current_user.first_name %></h1>
 </div>
-
+<img src="https://www.meme-arsenal.com/memes/8f8c4e9b4fe761093beddc3aeab6993b.jpg" height="500px">
+<h5>Форма с first name и last name будет перенесена в edit account</h5>
 <% if !@user.first_name.present? %>
   <div class="row">
     <div class="col">
@@ -23,9 +26,8 @@
     </div>
 
         <p>
-      <%= link_to "Edit Account", edit_user_registration_path %>
+      <%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %>
     </p>
-    <%= image_tag(current_user.avatar_thumbnail) %>
     <% end %>
 <% end %>
 

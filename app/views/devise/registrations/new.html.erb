@@ -1,21 +1,9 @@
-<h2>Sign up</h2>
+<div class="pt-5" style='text-align: center'>
+<h2 class="pt-5">Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <div class="field">
-    <% if resource.avatar.attached? %>
-    <%= image_tag(resource.avatar) %>
-    <% else %>
-    <%= image_tag("/default_profile.jpg") %>
-    <% end %>
-  </div>
-
-    <div class="field">
-    <%= f.file_field :avatar %>
-  </div>
-
-
+  <!-- !!!!!!!!!!!!!!!!!CUT!!!!!!!!!!!!!!!!!!!!!!! -->
   <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
   <div class="field">
@@ -35,11 +23,12 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  <br>
   <%= f.select :role, User.roles.keys.to_a, :prompt => 'Select' %>
-
-  <div class="actions">
+  <div class="actions pt-3">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

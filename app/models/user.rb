@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # after_initialize :set_default_role, :if => User.role.empty?
 
   def permit_params
-    params.require(:user).permit(:email, :role)
+    params.require(:user).permit(:email, :first_name, :role)
   end
 
   def set_default_role
