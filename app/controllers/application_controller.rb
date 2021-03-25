@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name])
+        devise_parameter_sanitizer.permit(:account_update, keys: [:last_name])
   end
 
   def current_order

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  get 'users/profile'
+
   # devise_for :users#, ActiveAdmin::Devise.config
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   ActiveAdmin.routes(self)
@@ -19,10 +19,15 @@ Rails.application.routes.draw do
   		get 'show_tasks'
   	end
   end
-
+  #get '/show', to: 'users#show'
+ 
   resources :users do
-    patch :save_profile, on: :collection
+    member do
+      get 'profile'
+    end
+        patch :save_profile, on: :collection
   end
+  #get 'users/:id', to: 'users#show'
   root 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

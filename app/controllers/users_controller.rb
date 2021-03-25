@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
-  def profile
-    @user = current_user
+
+    def index
+    @user = User.all
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+  def profile
+    @user = User.find(params[:id])
+  end
   def save_profile
-    @user = current_user
+    @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to root_path
   end

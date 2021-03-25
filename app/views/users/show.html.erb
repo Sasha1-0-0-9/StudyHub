@@ -1,8 +1,9 @@
 <!-- TODO -->
+
 <div class="pt-5">
   <br>
 <h1><%= @user.email %></h1>
-    <%= image_tag(@user.avatar_thumbnail) %>
+    <%= image_tag(current_user.avatar_thumbnail) %>
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 </div>
 <img src="https://www.meme-arsenal.com/memes/8f8c4e9b4fe761093beddc3aeab6993b.jpg" height="500px">
@@ -10,23 +11,23 @@
 
 <h5> History </h5>
 
-<table class="table table-bordered">
-  <thead class="thead-dark">
+<table>
+  <thead>
     <tr>
-      <th scope="col">Client</th>
-      <th scope="col">Implementer</th>
-      <th scope="col">Task</th>
-      <th scope="col">Status</th>
-      <th ></th>
+      <th>Client</th>
+      <th>Implementer</th>
+      <th>Task</th>
+      <th>Status</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
 
-<% Order.where(client_id: @user.id).or(Order.where(implementer_id: @user.id)).each do |order| %>
+<% Order.where(client_id: @user.id).each do |order| %>
  <tr>
-        <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
-        <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
+        <td><%= order.client_id %></td>
+        <td><%= link_to 'order.implementer_id', users_profile_path(order.implementer_id), class: 'nav-link'%></td>
         <td><%= order.task_id %></td>
         <td><%= order.status %></td>
         <td><%= link_to 'Show', Task.find(order.task_id) %></td>
