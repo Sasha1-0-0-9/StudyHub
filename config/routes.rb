@@ -14,6 +14,13 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
+  resources :orders do
+    member do
+      get 'show'
+      get 'complete'
+    end
+  end
+
   resources :categories do
   	member do
   		get 'show_tasks'

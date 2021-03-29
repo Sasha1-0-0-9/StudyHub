@@ -29,7 +29,13 @@
         <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
         <td><%= order.task_id %></td>
         <td><%= order.status %></td>
-        <td><%= link_to 'Show', Task.find(order.task_id) %></td>
+        <% if order.status == 'in_progress' and User.find(order.client_id) == current_user or order.status == 'in_progress' and User.find(order.implementer_id) == current_user %>
+                <td><%= link_to "Confirm", order_path(order.id), class: 'btn btn-outline-dark"' %></td>
+                <% else %>
+                        <td><%= link_to 'Show', Task.find(order.task_id) %></td>
+        <%end%>
+
+
       </tr>
     <% end %>
   </tbody>
