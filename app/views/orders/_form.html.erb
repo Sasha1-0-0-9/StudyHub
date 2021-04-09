@@ -1,0 +1,17 @@
+<div class="pt-5" style="position: relative; top: 40px; left: 50px;">
+  <h2> Rate this product and give your feedback </h2>
+<%= form_with(model: @order) do |f| %>
+    <% if @order.errors.any? %>
+      <% @order.errors.full_messages.each do |message| %>
+      <h4 class="alert-danger"> <%= message %> </h4>
+      <% end %>
+    <% end %>
+  <div>
+    <%= f.label :task_id %>
+    <%= f.text_area :task_id, class: 'form-control', rows: "2" %>
+  </div>
+  <br>
+  <%= f.hidden_field :task_id %>
+  <div><%= f.submit %></div>
+<% end %>
+</div>

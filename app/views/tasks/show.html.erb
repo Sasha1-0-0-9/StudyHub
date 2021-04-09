@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <p class="pt-5">
@@ -16,10 +17,27 @@
   <%= @task.price %>
 </p>
  <% if current_user.role == 'implementer' %>
+ <% if !Order.where(task_id: @task).present? %>
 <div><%= link_to 'Claim task', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
+<% elsif !@task.file.present? %>
+<%= link_to 'Edit', edit_task_path(@task) %>
+	
 <% end %>
+<% end %>
+
+
+<% if @task.file.present? %>
+<%= link_to 'Edit', edit_task_path(@task) %>
 <br>
+<% end %>
 
  <div class="col-lg-6 sm-12">
    <%= render 'comments/comment_show' %>
    </div>
+
+
+
+
+
+
+

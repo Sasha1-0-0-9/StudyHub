@@ -12,6 +12,8 @@ gem 'pg'
 
 gem 'rails_12factor'
 
+gem 'paperclip'
+
 # Plus integrations with:
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'omniauth-google-oauth2'

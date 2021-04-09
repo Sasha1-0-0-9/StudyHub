@@ -14,7 +14,15 @@ class TasksController < InheritedResources::Base
   end
 
   def update
-    @task.category = Category.find(params[:task][:category_id])
+        @task = Task.find(params[:id])
+       # @task.order = Order.find(params[:task][:order_id])
+    #@task.category = Category.find(params[:task][:category_id])
+    if @task.update(task_params)
+      flash[:success] = 'Comment successfully updated!'
+    else
+      flash[:danger] = 'Something wrong, sorry!'
+    end
+    redirect_to @task
   end
 
   def show
@@ -29,6 +37,6 @@ class TasksController < InheritedResources::Base
   end
 
   def task_params
-    params.require(:task).permit(:title, :category_id, :category, :description, :price)
+    params.require(:task).permit(:title, :category_id, :category, :description, :price, :file)
   end
 end

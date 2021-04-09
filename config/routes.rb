@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get '/main', to: 'pages#main'
   resources :tasks do
-    resources :orders, only: %i[create]
+    resources :orders#s, only: %i[create update]
   end
 
   resources :comments
@@ -16,10 +16,15 @@ Rails.application.routes.draw do
 
   resources :orders do
     member do
-      get 'show'
+  #    get 'show'
       get 'complete'
     end
   end
+
+  resources :orders
+  resources :users do
+   resources :reviews, only: [:new, :create]
+end
 
   resources :categories do
   	member do

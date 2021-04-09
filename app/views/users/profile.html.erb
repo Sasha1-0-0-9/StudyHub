@@ -1,45 +1,60 @@
 <!-- TODO -->
 <div class="pt-5">
   <br>
+
 <h1><%= @user.email %></h1>
     <%= image_tag(@user.avatar_thumbnail) %>
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 </div>
-<img src="https://www.meme-arsenal.com/memes/8f8c4e9b4fe761093beddc3aeab6993b.jpg" height="500px">
-<h5>Форма с first name и last name будет перенесена в edit account</h5>
 
-<h5> History </h5>
+<%#= link_to "Review", new_user_review_path(current_user, @user) %>
+
+
+<div class="d-flex justify-content-center"><%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %></div>
+
+<hr>
+<h4 class="d-flex justify-content-center"> Історія </h4>
 
 <table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
+      <th scope="col">Task_id</th>
+      <th scope="col">Task</th>
       <th scope="col">Client</th>
       <th scope="col">Implementer</th>
-      <th scope="col">Task</th>
+      
       <th scope="col">Status</th>
+      <th scope="col">Result</th>
+      <th scope="col">Confirm</th>
       <th ></th>
     </tr>
   </thead>
 
   <tbody>
 
-<% Order.where(client_id: @user.id).or(Order.where(implementer_id: @user.id)).each do |order| %>
- <tr>
-        <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
-        <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
-        <td><%= order.task_id %></td>
-        <td><%= order.status %></td>
-        <% if order.status == 'in_progress' and User.find(order.client_id) == current_user or order.status == 'in_progress' and User.find(order.implementer_id) == current_user %>
-                <td><%= link_to "Confirm", order_path(order.id), class: 'btn btn-outline-dark"' %></td>
-                <% else %>
-                        <td><%= link_to 'Show', Task.find(order.task_id) %></td>
-        <%end%>
+  <% Order.where(client_id: @user.id).or(Order.where(implementer_id: @user.id)).each do |order| %>
+    <tr>
+      <td><%= order.task_id %></td>
+      <td><%= Task.find(order.task_id).title %></td>
+      <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
+      <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
+      <td><%= order.status %></td>
+      <% if Task.find(order.task_id).file.present? %>
+        <td><%= link_to 'Download' , Task.find(order.task_id).file, download: '' %>
+          <% else %>
+          <td><p><%= link_to 'Edit', edit_task_path(order.task) %></p></td>
+      <% end %>
 
-
+      <% if order.status == 'in_progress' and User.find(order.implementer_id) == current_user %>
+        <% elsif order.status == 'ordered' and User.find(order.implementer_id) == current_user %>
+        <td><h5>Task has been completed </h5></td>
+            <!--<td><#%= button_to "New", action: "complete", remote: true %></td>-->
+        <% else %>
+            <td><h5>Complete task to confirm</h5></td>
+      <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 
-<%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %>

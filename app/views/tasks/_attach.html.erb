@@ -13,27 +13,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select :category_id, options_from_collection_for_select(Category.all, :id, :title)%>
-  </div>
- 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: 'form-control', rows: "3" %>
-  </div>
-  <br>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
     <div class="field">
     <%= form.label :file %>
     <%= form.file_field :file %>

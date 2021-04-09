@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+    before_action :set_order, only: %i[edit update destroy]
   def new
     order = Order.new
   end
@@ -15,14 +16,33 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+    def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      flash[:success] = 'Comment successfully updated!'
+    else
+      flash[:danger] = 'Something wrong, sorry!'
+    end
+    redirect_to root_path
+  end
+
   def show
     @order = Order.find(params[:id])
   end
   
   def complete
-    Order.find(params[:id]).update(status: 1)
+    @order = Order.find(params[:id]).update(status: 1)
+    render nothing: true
   end
   private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
     def order_params
     params.require(:order).permit(:user_id, :task_id, :body, :implementer_id)
   end

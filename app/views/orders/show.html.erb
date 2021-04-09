@@ -1,3 +1,4 @@
-<h1 class="pt-5"> test </h1>
-
-<div class="text-center"><%= link_to "Confirm", complete_order_path, class: 'btn btn-success' %></div>
+<div class="pt-5">
+<h1><%= @order.task.id %></h1>
+<%= link_to "Edit", edit_order_path(@order) %>
+</div>
