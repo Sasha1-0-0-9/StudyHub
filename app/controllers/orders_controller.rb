@@ -34,8 +34,8 @@ class OrdersController < ApplicationController
   end
   
   def complete
-    @order = Order.find(params[:id]).update(status: 1)
-    render nothing: true
+    @order = Order.where(implementer_id: current_user).update(status: 1)
+    redirect_to root_path
   end
   private
 

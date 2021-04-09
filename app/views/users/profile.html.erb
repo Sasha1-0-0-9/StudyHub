@@ -42,10 +42,14 @@
       <% if Task.find(order.task_id).file.present? %>
         <td><%= link_to 'Download' , Task.find(order.task_id).file, download: '' %>
           <% else %>
-          <td><p><%= link_to 'Edit', edit_task_path(order.task) %></p></td>
+          <td><p><%= link_to 'Show task', task_path(order.task) %></p></td>
       <% end %>
 
       <% if order.status == 'in_progress' and User.find(order.implementer_id) == current_user %>
+      <td><h5>Please complete the task </h5></td>
+      <% if Task.find(order.task_id).file.present? %>
+     <td><%= link_to "Confirm", complete_order_path, class: 'btn btn-success' %></td>
+     <%end%>
         <% elsif order.status == 'ordered' and User.find(order.implementer_id) == current_user %>
         <td><h5>Task has been completed </h5></td>
             <!--<td><#%= button_to "New", action: "complete", remote: true %></td>-->
