@@ -252,6 +252,7 @@ GEM
       activerecord (>= 5.2.4)
       activesupport (>= 5.2.4)
       i18n
+    ratyrate (1.2.2.alpha)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -338,6 +339,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.1)
   rails_12factor
+  ratyrate
   sass-rails (>= 6)
   selenium-webdriver
   spring

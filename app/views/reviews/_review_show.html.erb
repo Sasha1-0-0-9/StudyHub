@@ -1,0 +1,31 @@
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<h2 style="text-align: center;">Reviews</h2>
+<div class="review">
+  <% @task.reviews.each do |review| %>
+  <div class="col-lg-10">
+    <div class="card shadow mb-5">
+      <div class="card-header">
+      	<h6><%= review.user.email %></h6>
+        <% review.rating.times do %>
+          <i class="fa fa-star" style="color: #ffde00"></i>
+        <% end %>
+        <% blank_stars(review.rating).times do %>
+          <i class="fa fa-star" aria-hidden="true" style="color: #e1e1e1"></i>
+        <% end %>
+      </div>
+      <div class="card-body">
+
+        <div style="text-align: center;">
+         </div>
+      </div>
+
+        <div class="row">
+
+        </div>
+    </div>
+  </div>
+<% end %>
+
+  </div>

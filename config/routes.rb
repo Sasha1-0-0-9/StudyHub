@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get '/main', to: 'pages#main'
+  get '/faq', to: 'pages#faq'
+  get '/about', to: 'pages#about'
   resources :tasks do
     resources :orders#s, only: %i[create update]
   end
@@ -22,9 +24,9 @@ Rails.application.routes.draw do
   end
 
   resources :orders
-  resources :users do
-   resources :reviews, only: [:new, :create]
-end
+  #resources :users do
+
+#end
 
   resources :categories do
   	member do
@@ -34,11 +36,14 @@ end
   #get '/show', to: 'users#show'
  
   resources :users do
+       
     member do
       get 'profile'
     end
         patch :save_profile, on: :collection
   end
+
+  resources :reviews
   #get 'users/:id', to: 'users#show'
   root 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

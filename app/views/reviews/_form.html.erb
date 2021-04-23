@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">x</button>
+  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+</div>
+<div class="modal-body">
+  <div class="pt-5" style="position: relative; top: 40px; left: 50px;">
+  <h2> Rate this product and give your feedback </h2>
+  <%= form_for @review do |f| %>
+    <% if @review.errors.any? %>
+      <% @review.errors.full_messages.each do |message| %>
+      <h4 class="alert-danger"> <%= message %> </h4>
+      <% end %>
+    <% end %>
+
+  <div>
+    <%= f.label :rating %>
+    <%= f.select :rating, [*1..5], :prompt => 'Select' %>
+  </div>
+  <br>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :task_id %>
+  <div><%= f.submit %></div>
+<% end %>
+</div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary">Save</button>
+</div>

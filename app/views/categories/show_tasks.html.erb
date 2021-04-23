@@ -1,13 +1,13 @@
-<div class="row pt-5">
+
+<div class="container pt-5">
+<div class="row pt-5 ">
      		<% @category.tasks.each do |task| %>
-     <div class="card shadow mb-3">
-      <div class="card-header">
-          <h4><%= link_to task.title, task_path(task) %></h4>
-          <div class="card-body">
-        <p class="card-text"><%= task.description %></p>
-        <p class="badge bg-light text-dark"><%= number_to_currency(task.price, unit: "UAH", separator: ",", delimiter: " ", format: "%n %u") %></p>
-   </div>
-</div>
-</div>
+          	<h4 class="btn btn-outline-success" style="display: block; text-decoration:none;">
+          		<%= link_to task.title, task_path(task), {:style=>'display: block; text-decoration:none; font-weight:bold; color: black;', :class => "card-body text-truncate"} %>
+
+          		<p class="card-text text-truncate"><%=link_to task.description, task_path(task), {:style=>'display: block; text-decoration:none; color: black; text-align: left;'} %></p>
+
+          		<p class="card-text text-truncate"><%=link_to number_to_currency(task.price, unit: "UAH", separator: ",", delimiter: " ", format: "%n %u"), task_path(task), {:style=>'display: block; text-decoration:none; font-weight:bold;color: black; text-align: right;'}%></p></h4>
      		<% end %>
+</div>
 </div>

@@ -1,4 +1,6 @@
 class TasksController < InheritedResources::Base
+  before_action :authenticate_user!
+  before_action :get_children_list
   def new
     @task = Task.new
   end
@@ -28,9 +30,14 @@ class TasksController < InheritedResources::Base
   def show
     @task = Task.find(params[:id])
     @comment = @task.comments
+    @review = @task.reviews
   end
 
   private
+
+        def get_children_list
+    @subcategories = Category.children_of(Category.roots.ids[0]) + Category.children_of(Category.roots.ids[1])
+  end
 
   def set_author_post
     @post = Post.where(author_id: current_user.id).find(params[:id])

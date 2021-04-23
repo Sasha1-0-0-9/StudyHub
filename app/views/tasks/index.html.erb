@@ -1,33 +1,5 @@
-<p id="notice"><%= notice %></p>
+<script type="text/javascript">
 
-<h1>Tasks</h1>
+setTimeout('window.history.back()',0);
 
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.category %></td>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.price %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+</script>

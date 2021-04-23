@@ -16,7 +16,7 @@
   <strong>Ціна:</strong>
   <%= @task.price %>
 </p>
- <% if current_user.role == 'implementer' %>
+ <% if current_user.role == 'implementer' and Order.where(implementer_id: current_user).status != 'in_progress'%>
  <% if !Order.where(task_id: @task).present? %>
 <div><%= link_to 'Claim task', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
 <% #elsif !@task.file.present? %>
@@ -26,13 +26,16 @@
 <% end %>
 
 
-<% if !@task.file.present? and Order.where(task_id: @task).present? %>
+<% if !@task.file.present? and Order.where(task_id: @task).present? and  Order.where(implementer_id: current_user).present?%>
 <%= link_to 'Upload file', edit_task_path(@task) %>
 <br>
-<% else %>
-<td><%= link_to 'Download' , @task.file, download: '' %>
+<%# else %>
+<td><%#= link_to 'Download' , @task.file, download: '' %>
 <% end %>
 
+<% if current_user == @task.author_id %>
+<div><%= link_to 'Rate', new_review_path(user_id: current_user, task_id: @task, method: :get) %></div>
+<% end %>
  <div class="col-lg-6 sm-12">
    <%= render 'comments/comment_show' %>
    </div>

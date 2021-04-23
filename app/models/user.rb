@@ -21,6 +21,10 @@ class User < ApplicationRecord
     self.role ||= student
   end
 
+  def set_user_rating
+    rating
+  end
+
   def avatar_thumbnail
     if avatar.attached?
     avatar.variant(resize: "150x150!").processed
