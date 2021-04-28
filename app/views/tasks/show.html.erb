@@ -16,8 +16,9 @@
   <strong>Ціна:</strong>
   <%= @task.price %>
 </p>
- <% if current_user.role == 'implementer' and Order.where(implementer_id: current_user).status != 'in_progress'%>
  <% if !Order.where(task_id: @task).present? %>
+ <% if current_user.role == 'implementer' and !Order.where(implementer_id: current_user, status: 'in_progress').present? %>
+
 <div><%= link_to 'Claim task', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
 <% #elsif !@task.file.present? %>
 <%#= link_to 'Edit', edit_task_path(@task) %>

@@ -31,13 +31,15 @@ after_action :rating
       end
     end
 
+    if @user.role == 'implementer'
     @user.rating = marks.sum / marks.size
     @user.update(rating: @user.rating )
+  end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :birthday, :rating)
+    params.require(:user).permit(:email, :first_name, :last_name, :description, :birthday, :rating)
   end
 end

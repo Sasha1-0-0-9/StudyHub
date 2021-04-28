@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   	end
   end
   #get '/show', to: 'users#show'
+
+  resources :contacts
  
   resources :users do
        

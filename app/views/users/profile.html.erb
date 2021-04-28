@@ -5,6 +5,8 @@
 <h1><%= @user.email %></h1>
     <%= image_tag(@user.avatar_thumbnail) %>
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+
+<p><%= @user.description %></p>
 </div>
 
 <%= @user.rating %>
@@ -12,6 +14,7 @@
 <% if @user == current_user %>
 <div class="d-flex justify-content-center"><%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %></div>
 <% end %>
+
 
 <hr>
 <h4 class="d-flex justify-content-center"> Історія </h4>

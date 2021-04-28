@@ -1,7 +1,11 @@
-
-   <style>
+ <style>
 /* CSS */
 html {
+  background: url(https://www.meme-arsenal.com/memes/cd9690b72794234b088f5e9378664fa7.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .img__container {
@@ -36,7 +40,6 @@ html {
 
 .image {
   position  : relative;
-  height: :100%;
   width   : 100%; /* for IE 6 */
 }
 
@@ -73,16 +76,15 @@ h1 {
 <img src="http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png" class="image" alt="Описание изображения...">
 
 <div class="position">
-<div class="container pt-5">
+  <div class="container pt-5">
     <div class="row">
-  <% Category.children_of(@category).each do |sub_category| %>
+    <% Category.children_of(@category).each do |sub_category| %>
       <div class="col-3 pt-5">
     
         <p><%= link_to sub_category.title, show_tasks_category_path(sub_category), {:style=>'color:#FFFFFF; font-size: 50px; text-decoration:none;
           font-weight:bold; display: block;text-align: center;', :class => "card-body btn btn-success btn-circle"} %></p>
-   
       </div>
-  <% end %>
+    <% end %>
+    </div>
   </div>
-</div>
 </div>
