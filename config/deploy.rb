@@ -1,4 +1,4 @@
-lock "~> 3.15.0"
+lock "~> 3.16.0"
 
 set :repo_url, "git@github.com:Sasha1-0-0-9/ChillPal.git"
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
