@@ -32,7 +32,11 @@ after_action :rating
     end
 
     if @user.role == 'implementer'
-    @user.rating = marks.sum / marks.size
+      if marks.empty?
+        @user.rating = 0
+      else
+        @user.rating = marks.sum / marks.size
+      end
     @user.update(rating: @user.rating )
   end
   end

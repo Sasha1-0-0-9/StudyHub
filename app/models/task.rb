@@ -5,6 +5,8 @@ class Task < ApplicationRecord
   has_many :comments
   has_many :reviews
 
+  validates_presence_of :title, :description, :price
+
   def permit_params
     params.require(:user).permit(:title, :description, :price, :category_id, :author_id, :user_id,
                                  :authenticity_token)

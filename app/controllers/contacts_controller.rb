@@ -19,13 +19,13 @@ end
 
 
     def complete
-    @contact = Contact.find(5)
+    @contact = Contact.last
     ContactMailer.complete_form.deliver_now
   end
 
   private
 
   def contact_params
-  params.require(:contact).permit(:name, :email, :message)
+  params.require(:contact).permit(:subject, :message, :email)
   end
 end
