@@ -16,6 +16,12 @@
   <strong>Ціна:</strong>
   <%= @task.price %>
 </p>
+<% if @task.additional_file.present? %>
+<p>
+  <strong>Вкладені файли:</strong>
+<%= link_to 'Завантажити' , @task.additional_file, download: '' %>
+</p>
+<% end %>
  <% if !Order.where(task_id: @task).present? %>
  <% if current_user.role == 'implementer' and !Order.where(implementer_id: current_user, status: 'in_progress').present? %>
 

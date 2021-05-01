@@ -44,6 +44,6 @@ class TasksController < InheritedResources::Base
   end
 
   def task_params
-    params.require(:task).permit(:title, :category_id, :category, :description, :price, :file)
+    params.require(:task).permit(:title, :category_id, :category, :description, :price, :file, :additional_file)
   end
 end

@@ -16,7 +16,7 @@
 
   <div class="field">
     <%= form.label :Категорія %>:</br>
-    <%= form.select :category_id, options_from_collection_for_select(Category.all, :id, :title)%>
+    <%= form.select :category_id, options_from_collection_for_select(@subcategories, :id, :title)%>
   </div>
  
   <div class="field">
@@ -37,7 +37,11 @@
     <p>Рrice:</p>
     <%= form.text_field :price, class: 'form-control', placeholder: "100" %></br></br>
   </div>
-
+        <div class="field">
+    <p>Прикріпити файл </p> 
+    <%= form.file_field :additional_file %>
+  </div>
+</br>
   <div class="actions">
       <%= form.submit "Створити завдання", class: 'btn btn-success' %></br></br>
     </div>

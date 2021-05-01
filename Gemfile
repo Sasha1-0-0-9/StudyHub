@@ -64,6 +64,16 @@ group :development do
   gem 'spring'
 end
 
+group :development do
+  gem "capistrano"
+  gem "capistrano-rvm"
+  gem "capistrano-rails"
+  gem "capistrano3-puma", github: "seuros/capistrano-puma"
+  gem "capistrano-nginx", "~> 1.0"
+  gem "capistrano-upload-config"
+  gem "sshkit-sudo"
+end
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
