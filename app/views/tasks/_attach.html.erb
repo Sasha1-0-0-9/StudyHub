@@ -1,25 +1,34 @@
-<div class="pt-5" style="text-align: center;">
-  <h4> THIS 200 IQ DESIGN WILL BE CHANGED SOON </h4>
-<%= form_with(model: task) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<div class="container" style="width: 80%;">
+  <div class="pt-5" style="text-align: center;">
+    <h1 style="font-size: 400%;"> Вітаємо з виконанням завдання </h1>
+      <div class="card shadow mb-3">
+  <div class="card-body" style="background: #cccccc;">
+  <%= form_with(model: task) do |form| %>
+    <% if task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% task.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <div class="field">
+      <%= form.label :file %><br/>
+      <%= form.file_field :file ,:style => 'font size: 100%;color: green;width:40%;background:white;border-radius: 8px;'%>
+    </div>
+  </br>
+  </br>
+
+
+    <div class="actions">
+      <%= form.submit "Завантажити відповідь", :class =>'btn btn-success'%>
     </div>
   <% end %>
-
-    <div class="field">
-    <%= form.label :file %>
-    <%= form.file_field :file %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
+</div>
 </div>

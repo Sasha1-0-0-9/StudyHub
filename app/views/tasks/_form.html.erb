@@ -37,13 +37,18 @@
     <p>Рrice:</p>
     <%= form.text_field :price, class: 'form-control', placeholder: "100" %></br></br>
   </div>
+  <div class="field">
+    <p>Дедлайн </p> 
+    <%= form.date_field :deadline %>
+  </div>
+  <br>
         <div class="field">
     <p>Прикріпити файл </p> 
     <%= form.file_field :additional_file %>
   </div>
 </br>
   <div class="actions">
-      <%= form.submit "Створити завдання", class: 'btn btn-success' %></br></br>
+      <%= form.submit "Створити завдання",class: 'btn btn-success' %></br></br>
     </div>
 
 

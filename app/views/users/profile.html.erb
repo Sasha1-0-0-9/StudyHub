@@ -1,20 +1,41 @@
-<!-- TODO -->
-<div class="pt-5">
+  <style>
+   .round {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px; /* Радиус скругления */
+    border: 3px solid green; /* Параметры рамки */
+    box-shadow: 0 0 7px #666; /* Параметры тени */
+
+   }
+  </style>
+
+<div class="container">
+  <div class="pt-5">
   <br>
-
-<h1><%= @user.email %></h1>
-    <%= image_tag(@user.avatar_thumbnail) %>
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
-
-<p><%= @user.description %></p>
+    <div class="row">
+      <div class="col-2 pt-1">
+        <%= image_tag(@user.avatar_thumbnail, {:class => "round"})%>
+      </div>
+      <div class="col-4 pt-1">
+        <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+        <p><%= @user.description %></p>
+          <% @user.rating.to_i.times do %>
+          <i class="fa fa-star" style="color: #ffde00"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  
+<div class="row">
+  <div class="pt-3">
+    <div class="col-4 pt-1">
+  <% if @user == current_user %>
+  <div class="d-flex justify-content-left"><%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %></div>
+  <% end %>
 </div>
-
-<%= @user.rating %>
-
-<% if @user == current_user %>
-<div class="d-flex justify-content-center"><%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %></div>
-<% end %>
-
+</div>
+</div>
 
 <hr>
 <h4 class="d-flex justify-content-center"> Історія </h4>
@@ -39,9 +60,13 @@
   <% Order.where(client_id: @user.id).or(Order.where(implementer_id: @user.id)).each do |order| %>
     <tr>
       <td><%= order.task_id %></td>
-      <td><%= Task.find(order.task_id).title %></td>
+      <td><%= link_to order.task.title, task_path(order.task)%></td>
       <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
+      <% if order.status == "виконується" or order.status == "виконано"%>
       <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
+      <%else%>
+      <td>Це завдання ще ніхто не виконує</td>
+      <% end %>
       <td><%= order.status %></td>
       <% if Task.find(order.task_id).file.present? %>
         <td><%= link_to 'Download' , Task.find(order.task_id).file, download: '' %>
@@ -49,12 +74,12 @@
           <td><p><%= link_to 'Show task', task_path(order.task) %></p></td>
       <% end %>
 
-      <% if order.status == 'in_progress' and User.find(order.implementer_id) == current_user %>
+      <% if order.status == 'виконується' and User.find(order.implementer_id) == current_user %>
       <td><h5>Please complete the task </h5></td>
       <% if Task.find(order.task_id).file.present? %>
      <td><%= link_to "Confirm", complete_order_path(order), class: 'btn btn-success' %></td>
      <%end%>
-        <% elsif order.status == 'ordered' and User.find(order.implementer_id) == current_user %>
+        <% elsif order.status == 'виконано' and User.find(order.implementer_id) == current_user %>
         <td><h5>Task has been completed </h5></td>
             <!--<td><#%= button_to "New", action: "complete", remote: true %></td>-->
         <% else %>
@@ -64,5 +89,4 @@
     <% end %>
   </tbody>
 </table>
-
-
+</div>

@@ -1,90 +1,47 @@
  <style>
 /* CSS */
 html {
-  background: url(https://www.meme-arsenal.com/memes/cd9690b72794234b088f5e9378664fa7.jpg) no-repeat center center fixed;
+  background: url(http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
-.img__container {
-  position: relative;
-  margin: 20px auto 30px auto;
-}
-
-.img__container>img {
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-  box-shadow: 0 0 6px #9E9E9E;
-  border: 4px solid #fff;
-}
-
-.img__description {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.img__header {
-  font-weight: bold;
-  font-size: 1.25em;
-}    
-
 .image {
   position  : relative;
   width   : 100%; /* for IE 6 */
 }
 
-.position {
-  text-align: center;
-  vertical-align: middle;
-  position  : absolute;
-  top   : 100px;
- 
-  width   : 100%;
+
+  .hrBar
+{
+        background-image: url('http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
-h1 {
-  text-align: center;
-  top   :400px;
-  left    : 0;
-  width   : 100%;
-  font-size: 100px;
-}
-
-.link p {
-  display: block; /* Ссылка как блочный элемент */
-  text-align: center; /* Выравнивание по центру */
-  height: 100%; /* Высота на весь слой */
-  color: #666; /* Цвет ссылки */
-}
-
-
-
 
 
 </style>
 
+<!--<body background="http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png">
+<!--<img src="http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png" class="image" alt="Описание изображения...">-->
 
-<img src="http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png" class="image" alt="Описание изображения...">
-
+<body class="hrBar">
 <div class="position">
   <div class="container pt-5">
     <div class="row">
     <% Category.children_of(@category).each do |sub_category| %>
+      
       <div class="col-3 pt-5">
-    
-        <p><%= link_to sub_category.title, show_tasks_category_path(sub_category), {:style=>'color:#FFFFFF; font-size: 50px; text-decoration:none;
-          font-weight:bold; display: block;text-align: center;', :class => "card-body btn btn-success btn-circle"} %></p>
+        <p><%= link_to sub_category.title, show_tasks_category_path(sub_category), {:style=>'color:#FFFFFF; font-size: 150%;  text-overflow: ellipsis; text-decoration:none;
+          font-weight:bold; display: block;   width: 310px; height: 100px;', :class => "card-body btn btn-success btn-circle"} %></p>
       </div>
     <% end %>
     </div>
   </div>
 </div>
+</body>

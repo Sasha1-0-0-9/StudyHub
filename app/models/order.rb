@@ -3,5 +3,5 @@ class Order < ApplicationRecord
   belongs_to :task, optional: true
   belongs_to :comment, optional: true
 
-  enum status: %i[in_progress ordered ended]
+  enum status: %i[активне виконується виконано]
 end

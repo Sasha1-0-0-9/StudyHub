@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   resources :orders do
     member do
-  #    get 'show'
+      post '/appoint', to: 'orders#appoint', as: 'appoint'
+
+      #get 'appoint_order'
       get 'complete'
     end
   end

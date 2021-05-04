@@ -1,55 +1,50 @@
+<div class="container">
 
-<p id="notice"><%= notice %></p>
+<div class="card shadow mb-3">
+  <div class="card-body" style="background: #cccccc;">
+		<p id="notice"><%= notice %></p>
 
-<p class="pt-5">
-<h1><%= @task.title %></h1>
-	 <h5><%= @task.category.parent.title %> / <%= @task.category.title %></h5>
-	<h6> Замовник: <%= User.find(@task.author_id).email %></h6>
-</p>
+		<p class="pt-5">
+		<h1><%= @task.title %></h1>
+			 <h5><%= @task.category.parent.title %> / <%= @task.category.title %></h5>
+			<h6> Замовник: <%=link_to User.find(@task.author_id).email, profile_user_path(@task.author_id) , :style => 'text-decoration: none; color: #188753; font-weight: bold;'%></h6>
+		</p>
+		</p>
 
-<p>
-  <strong>Опис:</strong>
-  <%= @task.description %>
-</p>
- 
-<p>
-  <strong>Ціна:</strong>
-  <%= @task.price %>
-</p>
-<% if @task.additional_file.present? %>
-<p>
-  <strong>Вкладені файли:</strong>
-<%= link_to 'Завантажити' , @task.additional_file, download: '' %>
-</p>
-<% end %>
- <% if !Order.where(task_id: @task).present? %>
- <% if current_user.role == 'implementer' and !Order.where(implementer_id: current_user, status: 'in_progress').present? %>
+		<p>
+		  <strong>Опис:</strong>
+		  <%= @task.description %>
+		</p>
+		 
+		<p>
+		  <strong>Ціна:</strong>
+		  <%= @task.price %>
+		</p>
+		<p>
+		  <strong>Дедлайн:</strong>
+		  <%= @task.deadline %>
+		</p>
+		 <% if Order.where(task_id: @task, status: 0).present? and current_user.role == 'implementer' %>
+		 <% if !Order.where(implementer_id: current_user, status: 1).present? %>
 
-<div><%= link_to 'Claim task', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
-<% #elsif !@task.file.present? %>
-<%#= link_to 'Edit', edit_task_path(@task) %>
-	
-<% end %>
-<% end %>
-
-
-<% if !@task.file.present? and Order.where(task_id: @task).present? and  Order.where(implementer_id: current_user).present?%>
-<%= link_to 'Upload file', edit_task_path(@task) %>
-<br>
-<%# else %>
-<td><%#= link_to 'Download' , @task.file, download: '' %>
-<% end %>
-
-<% if current_user == @task.author_id %>
-<div><%= link_to 'Rate', new_review_path(user_id: current_user, task_id: @task, method: :get) %></div>
-<% end %>
+		<div><%= link_to 'Претендувати на це завдання', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
+		<% #elsif !@task.file.present? %>
+		<%#= link_to 'Edit', edit_task_path(@task) %>
+			
+		<% end %>
+		<% end %>
+		<% if !@task.file.present? and Order.where(task_id: @task, implementer_id: current_user).present? %>
+		<%= link_to 'Upload file', edit_task_path(@task), :class => 'btn btn-success', :style =>'text=text-decoration: none;'%>
+		<br>
+		<%# else %>
+		<td><%#= link_to 'Download' , @task.file, download: '' %>
+		<% end %>
+		<% if current_user == @task.author_id %>
+		<div><%= link_to 'Rate', new_review_path(user_id: current_user, task_id: @task, method: :get) %></div>
+		<% end %>
+	</div>
+</div>
  <div class="col-lg-6 sm-12">
    <%= render 'comments/comment_show' %>
    </div>
-
-
-
-
-
-
-
+</div>

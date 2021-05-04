@@ -1,68 +1,108 @@
-<div class="class="pt-5" style="text-align: center">
-<br>
-<h2 class="pt-5">Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <style>
+   .round {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px; /* Радиус скругления */
+    border: 3px solid green; /* Параметры рамки */
+    box-shadow: 0 0 7px #666; /* Параметры тени */
 
-    <div class="field">
-    <%= image_tag(resource.avatar_thumbnail) if resource.avatar.attached? %>
+   }
+  </style>
+
+<div class="container">
+  <div class="class="pt-5" style="text-align: center">
+    <br>
+    <h2 class="pt-5">Edit <%= resource_name.to_s.humanize %></h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+
+<div class="card shadow mb-3">
+  <div class="card-body" style="background: #cccccc;">
+
+    <div class="row">
+      <div class="col-3 pt-1">
+        <div class="field">
+          <%= image_tag(resource.avatar_thumbnail, {:class => "round"}) if resource.avatar.attached? %>
+        </div>
+        <div class="field pt-3">
+          <%= f.file_field :avatar, {:style=> 'max-width: 30ch;'}%> 
+        </div>
+      </div>
+
+
+
+      <div class="col-4 pt-1" style="text-align: left;">
+        <div class="field">
+          
+          <%= f.text_field :first_name %>
+          <%= f.label "Ім'я"%>
+        </div>
+
+        <div class="field">
+          
+          <%= f.text_field :last_name %>
+          <%= f.label "Прізвище"%>
+        </div>
+
+        <div class="field">
+          
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.label :email %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field">
+          
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.label "Новий пароль" %>
+          <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> мінімальна кількість символів</em>
+          <% end %>
+        </div>
+
+        <div class="field">
+          
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.label "Підтвердження паролю" %>
+        </div>
+
+
+        <div class="field">
+          <%= f.label "Про себе:"%>
+          <%= f.text_area :description, class: 'form-control', rows: "3" %>
+        </div>
+
+      </br>
+     
+
+        <div class="field">
+          
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+          <%= f.label "Актуальний пароль" %> <i>(потрібен для підтвердження змін)</i><br />
+        </div>
+
+        <div class="actions">
+        <%= f.submit "Оновити інформацію"%>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="col-4 pt-1" style="text-align: right;">
+        <h3>Cancel my account</h3>
+        <%= button_to "Видалити мій акаунт", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+        </br>
+        <%= link_to "Попередня сторінка", :back , {:style=>'text-decoration:none;', :class => "btn btn-success"}%>
+      </div>
+    </div>
   </div>
-  <br>
+</div>
 
-  <div class="field">
-    <%= f.file_field :avatar %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
 
-    <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
 </div>

@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
   def show_tasks
     @category = Category.find(params[:id])
     @tasks = Task.where(category_id: params[:id])
+    @is_empty = true
   end
 
   def new
