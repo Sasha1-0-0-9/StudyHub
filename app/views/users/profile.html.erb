@@ -62,24 +62,24 @@
       <td><%= order.task_id %></td>
       <td><%= link_to order.task.title, task_path(order.task)%></td>
       <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
-      <% if order.status == "виконується" or order.status == "виконано"%>
+      <% if order.status == "in_progress" or order.status == "done"%>
       <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
       <%else%>
       <td>Це завдання ще ніхто не виконує</td>
       <% end %>
-      <td><%= order.status %></td>
+      <td><%= order.status_ua %></td>
       <% if Task.find(order.task_id).file.present? %>
         <td><%= link_to 'Download' , Task.find(order.task_id).file, download: '' %>
           <% else %>
           <td><p><%= link_to 'Show task', task_path(order.task) %></p></td>
       <% end %>
 
-      <% if order.status == 'виконується' and User.find(order.implementer_id) == current_user %>
+      <% if order.status == 'in_progress' and User.find(order.implementer_id) == current_user %>
       <td><h5>Please complete the task </h5></td>
       <% if Task.find(order.task_id).file.present? %>
      <td><%= link_to "Confirm", complete_order_path(order), class: 'btn btn-success' %></td>
      <%end%>
-        <% elsif order.status == 'виконано' and User.find(order.implementer_id) == current_user %>
+        <% elsif order.status == 'done' and User.find(order.implementer_id) == current_user %>
         <td><h5>Task has been completed </h5></td>
             <!--<td><#%= button_to "New", action: "complete", remote: true %></td>-->
         <% else %>

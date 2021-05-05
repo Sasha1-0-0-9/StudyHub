@@ -1,24 +1,16 @@
 class ContactsController < ApplicationController
-	def new
-@contact = Contact.new
+  def new
+    @contact = Contact.new
   end
 
   def create
-@contact = Contact.create(contact_params)
-#ContactMailer.complete_form.deliver_now
-#@contact.request = request
-if @contact.save
-	ContactMailer.complete_form.deliver_now
-  flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
-  redirect_to root_path
-else
-  flash.now[:error] = 'Cannot send message.'
-  render :new
-end
+    @contact = Contact.create(contact_params)
+      ContactMailer.complete_form.deliver_now
+      flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
+      redirect_to root_path
   end
 
-
-    def complete
+  def complete
     @contact = Contact.last
     ContactMailer.complete_form.deliver_now
   end
@@ -26,6 +18,6 @@ end
   private
 
   def contact_params
-  params.require(:contact).permit(:subject, :message, :email)
+    params.require(:contact).permit(:subject, :message, :email)
   end
 end

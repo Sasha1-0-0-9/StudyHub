@@ -7,17 +7,12 @@ class Task < ApplicationRecord
 
   validates_presence_of :title, :description, :price
 
-  def permit_params
-    params.require(:user).permit(:title, :description, :price, :category_id, :author_id, :user_id,
-                                 :authenticity_token)
-  end
-
   def rating
-    quantity = if reviews.count == 0
-      quantity = 1
-    else
-      quantity = reviews.count
-    end
+    quantity = quantity = if reviews.count == 0
+                            1
+                          else
+                            reviews.count
+                          end
     reviews.sum(&:rating) / quantity
   end
 end

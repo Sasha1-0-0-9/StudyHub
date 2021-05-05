@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
   def edit; end
 
   def update
-    @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       flash[:success] = 'Comment successfully updated!'
     else

@@ -23,6 +23,10 @@ gem 'font-awesome-rails'
 
 gem 'font-awesome-sass'
 
+gem 'translate_enum'
+
+gem 'enum_translatable', '~> 0.1.3'
+
 gem 'ancestry', '~> 3.2.1'
 
 # Use sqlite3 as the database for Active Record
@@ -65,13 +69,13 @@ group :development do
 end
 
 group :development do
-  gem "capistrano"
-  gem "capistrano-rvm"
-  gem "capistrano-rails"
-  gem "capistrano3-puma", github: "seuros/capistrano-puma"
-  gem "capistrano-nginx", "~> 1.0"
-  gem "capistrano-upload-config"
-  gem "sshkit-sudo"
+  gem 'capistrano'
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
+  gem 'capistrano-nginx', '~> 1.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-upload-config'
+  gem 'sshkit-sudo'
 end
 
 group :test do

@@ -3,14 +3,13 @@ class TasksController < InheritedResources::Base
   before_action :get_children_list
   def new
     @task = Task.new
-
   end
 
   def create
     @task = Task.new(task_params.merge(author_id: current_user.id))
     @task.category = Category.find(params[:task][:category_id])
     if @task.save
-      Order.create!(client_id: current_user.id, status: 0,task_id: @task.id)
+      Order.create!(client_id: current_user.id, status: 0, task_id: @task.id)
       redirect_to @task, notice: 'Post was successfully created.'
     else
       render :new
@@ -18,9 +17,9 @@ class TasksController < InheritedResources::Base
   end
 
   def update
-        @task = Task.find(params[:id])
-       # @task.order = Order.find(params[:task][:order_id])
-    #@task.category = Category.find(params[:task][:category_id])
+    @task = Task.find(params[:id])
+    # @task.order = Order.find(params[:task][:order_id])
+    # @task.category = Category.find(params[:task][:category_id])
     if @task.update(task_params)
       flash[:success] = 'Comment successfully updated!'
     else
@@ -37,7 +36,7 @@ class TasksController < InheritedResources::Base
 
   private
 
-        def get_children_list
+  def get_children_list
     @subcategories = Category.children_of(Category.roots.ids[0]) + Category.children_of(Category.roots.ids[1])
   end
 
@@ -46,6 +45,7 @@ class TasksController < InheritedResources::Base
   end
 
   def task_params
-    params.require(:task).permit(:title, :category_id, :category, :description, :price, :deadline, :file, :additional_file)
+    params.require(:task).permit(:title, :category_id, :category, :description, :price, :deadline, :file,
+                                 :additional_file)
   end
 end

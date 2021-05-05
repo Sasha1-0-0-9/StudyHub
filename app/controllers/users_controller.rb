@@ -1,15 +1,17 @@
 class UsersController < ApplicationController
-after_action :rating
-    def index
+  after_action :rating
+  def index
     @user = User.all
   end
 
   def show
     @user = User.find(params[:id])
   end
+
   def profile
     @user = User.find(params[:id])
   end
+
   def save_profile
     @user = User.find(params[:id])
     @user.update(user_params)
@@ -26,19 +28,17 @@ after_action :rating
 
     exc.each do |qqq|
       mark = Task.find(qqq).rating
-      if mark > 0
-        marks << mark
-      end
+      marks << mark if mark > 0
     end
 
     if @user.role == 'implementer'
-      if marks.empty?
-        @user.rating = 0
-      else
-        @user.rating = marks.sum / marks.size
-      end
-    @user.update(rating: @user.rating )
-  end
+      @user.rating = if marks.empty?
+                       0
+                     else
+                       marks.sum / marks.size
+                     end
+      @user.update(rating: @user.rating)
+    end
   end
 
   private

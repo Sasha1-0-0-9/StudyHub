@@ -11,10 +11,10 @@
       <div class="card-body">
         <p class="card-text"><%= comment.body %></p>
         <div style="text-align: center;">
-        	 <% if current_user.present? %>
-           <% if current_user.role == "student" %>
-           <% if !Order.where(task_id: @task, status: 1).present? or !Order.where(task_id: @task, status: 2).present?%>
-           <%= button_to 'Press me', appoint_order_path(task_id: @task.id, implementer_id: comment.user_id), method: :post %>
+        	 <%# if current_user.present? %>
+           <% if current_user.role == "student" and current_user.id == @task.author_id %>
+           <% if Order.where(task_id: @task, status: 0).present? %>
+           <%= button_to 'Доручити', appoint_order_path(task_id: @task.id, implementer_id: comment.user_id), method: :post, class: "btn btn-success" %>
            <%#= button_to "Give", order_appoint_path(Order.where(task_id: @task).ids),class: 'btn btn-success' %>
            <%#= link_to 'Give', appoint_order_path(@task, comment.user_id),class: 'btn btn-success' %>
            <% else %>
@@ -26,7 +26,7 @@
 	            	<%= link_to (fa_icon "trash-o"), comment_path(comment), method: :delete, class: "btn btn-outline-dark",
 	                              data: {confirm: 'Confirm delete your comment?'} %>
 	             <% end %>
-            <% end %>
+            <%# end %>
          </div>
       </div>
 
