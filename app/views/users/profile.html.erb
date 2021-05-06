@@ -46,7 +46,7 @@
 
   <tbody>
 
-  <% Order.where(client_id: @user.id).or(Order.where(implementer_id: @user.id)).each do |order| %>
+  <% @orderlist.each do |order| %>
     <tr>
       <td><%= order.task_id %></td>
       <td><%= link_to order.task.title, task_path(order.task)%></td>
@@ -57,18 +57,18 @@
       <td>Це завдання ще ніхто не виконує</td>
       <% end %>
       <td><%= order.status_ua %></td>
-      <% if Task.find(order.task_id).file.present? %>
-        <td><%= link_to 'Download' , Task.find(order.task_id).file, download: '' %>
+      <% if order.task.file.present? %>
+        <td><%= link_to 'Download' , order.task.file, download: '' %>
           <% else %>
           <td><p><%= link_to 'Show task', task_path(order.task) %></p></td>
       <% end %>
 
-      <% if order.status == 'in_progress' and User.find(order.implementer_id) == current_user %>
+      <% if order.status == 'in_progress' and order.implementer_id == current_user.id %>
       <td><h5>Please complete the task </h5></td>
-      <% if Task.find(order.task_id).file.present? %>
+      <% if order.task.file.present? %>
      <td><%= link_to "Confirm", complete_order_path(order), class: 'btn btn-success' %></td>
      <%end%>
-        <% elsif order.status == 'done' and User.find(order.implementer_id) == current_user %>
+        <% elsif order.status == 'done' and order.implementer_id == current_user.id %>
         <td><h5>Task has been completed </h5></td>
             <!--<td><#%= button_to "New", action: "complete", remote: true %></td>-->
         <% else %>

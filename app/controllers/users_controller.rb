@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+    @orderlist = Order.where(client_id: @user.id).or(Order.where(implementer_id: @user.id))
   end
 
   def user_params

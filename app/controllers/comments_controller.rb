@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[edit update destroy]
+  before_action :set_comment, only: %i[destroy]
   def new
     @comment = Comment.new(user_id: params[:user_id], task_id: params[:task_id])
   end
@@ -12,6 +12,10 @@ class CommentsController < ApplicationController
       flash.now[:error] = @comment.errors.messages
       render 'new'
     end
+  end
+
+  def show
+    @active_order = Order.where(task_id: @task, status: 0)
   end
 
   def edit; end

@@ -9,7 +9,8 @@ class TasksController < InheritedResources::Base
     @task = Task.new(task_params.merge(author_id: current_user.id))
     @task.category = Category.find(params[:task][:category_id])
     if @task.save
-      Order.create!(client_id: current_user.id, status: 0, task_id: @task.id)
+      @active_order = Order.create!(client_id: current_user.id, status: 0, task_id: @task.id)
+      #@active_order = Order.where(task_id: @task, status: 0)
       redirect_to @task, notice: 'Post was successfully created.'
     else
       render :new
@@ -38,10 +39,6 @@ class TasksController < InheritedResources::Base
 
   def get_children_list
     @subcategories = Category.children_of(Category.roots.ids[0]) + Category.children_of(Category.roots.ids[1])
-  end
-
-  def set_author_post
-    @post = Post.where(author_id: current_user.id).find(params[:id])
   end
 
   def task_params
