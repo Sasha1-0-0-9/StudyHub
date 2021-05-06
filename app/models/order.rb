@@ -4,5 +4,5 @@ class Order < ApplicationRecord
   belongs_to :comment, optional: true
 
   enum status: %i[active in_progress done]
-    include EnumTranslatable
+  include EnumTranslatable
 end

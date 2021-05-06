@@ -5,9 +5,9 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.create(contact_params)
-      ContactMailer.complete_form.deliver_now
-      flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
-      redirect_to root_path
+    ContactMailer.complete_form.deliver_now
+    flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
+    redirect_to root_path
   end
 
   def complete

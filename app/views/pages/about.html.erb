@@ -1,23 +1,5 @@
-<style>
-html { overflow-x: hidden; }
-
- .image {
-  position  : relative;
-  width   : 100%; /* for IE 6 */
-  height: 100%;
-    }
-
-.position {
-  text-align: left;
-  position  : absolute;
-  top   : 240px;
-  left    : 0;
-  width   : 100%;
-}
-</style>
-
-
- <img src="http://i.piccy.info/i9/1e04c0dfb127f71512d95b735eb3d33f/1618317123/53283/1424071/85661Frame_2.png" class="image" alt="Описание изображения...">
+<%= stylesheet_link_tag 'about' %>
+ <%= image_tag("Frame2.png", :class =>'image')%>
 <div class="position">
 <div class="row">
   
@@ -70,4 +52,3 @@ html { overflow-x: hidden; }
       <span><strong>Наші гарантії</span></strong></p>
       <p style="font-size: 20pt;">Вибираючи виконавця, ви бачите його рейтинг в системі. Наші автори зацікавлені в якісному і своєчасному виконанні кожного завдання, так як ризикують своїм рейтингом і репутацією. У нас немає випадкових людей - все автори досвідчені виконавці і працюють на ринку студентських послуг довгий час.</p><p style="font-size: 2px">Ми не несемо відповідальності за ваші кошти</p>
 </div>
-

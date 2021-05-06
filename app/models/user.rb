@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  enum role: [:student, :implementer]
+  enum role: %i[student implementer]
   include EnumTranslatable
-  
+
   has_one_attached :avatar
 
   has_many :comments

@@ -1,0 +1,12 @@
+ .image {
+  position  : relative;
+  width   : 100%; /* for IE 6 */
+}
+
+.position {
+  text-align: left;
+  position  : absolute;
+  top   : 240px;
+  left    : 0;
+  width   : 100%;
+}

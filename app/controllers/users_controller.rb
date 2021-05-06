@@ -1,19 +1,13 @@
 class UsersController < ApplicationController
+  before_action :set_user
   after_action :rating
   def index
     @user = User.all
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def profile
-    @user = User.find(params[:id])
-  end
+  def profile; end
 
   def save_profile
-    @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to root_path
   end
@@ -42,6 +36,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :description, :birthday, :rating)

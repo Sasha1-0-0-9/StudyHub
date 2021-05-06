@@ -1,7 +1,7 @@
- <style>
-/* CSS */
-html {
-  background: url(http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png) no-repeat center center fixed;
+
+<style>
+  html {
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -16,22 +16,16 @@ html {
 
   .hrBar
 {
-        background-image: url('http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background-image: url(<%= asset_path 'Frame4.png'%>);
   background-size: cover;
 
 }
-
-
-</style>
+</style>>
 
 <!--<body background="http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png">
 <!--<img src="http://i.piccy.info/i9/cf889a261efdafaa060b6071ad7c05fd/1617808355/42427/1424071/Bez_ymeny_007.png" class="image" alt="Описание изображения...">-->
 
 <body class="hrBar">
-<div class="position">
   <div class="container pt-5">
     <div class="row">
     <% Category.children_of(@category).each do |sub_category| %>
@@ -43,5 +37,4 @@ html {
     <% end %>
     </div>
   </div>
-</div>
 </body>

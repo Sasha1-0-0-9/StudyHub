@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order
   helper_method :appoint_order
-  
 
   def show
     @order = Order.find(params[:id])
