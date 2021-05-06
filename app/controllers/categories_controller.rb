@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category
   def show
-    # @category = Category.find(params[:id])
     @tasks = Task.where(category_id: params[:id])
   end
 
