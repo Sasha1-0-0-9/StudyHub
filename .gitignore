@@ -49,3 +49,4 @@ yarn-debug.log*
 /config/environments/development.rb
 /config/environments/production.rb
 /config/credentials.yml.enc
+/config/application.rb
