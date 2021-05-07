@@ -39,7 +39,7 @@
 		<%# else %>
 		<td><%#= link_to 'Download' , @task.file, download: '' %>
 		<% end %>
-		<% if current_user == @task.author_id %>
+		<% if current_user.id == @task.author_id %>
 		<div><%= link_to 'Rate', new_review_path(user_id: current_user, task_id: @task, method: :get) %></div>
 		<% end %>
 	</div>
