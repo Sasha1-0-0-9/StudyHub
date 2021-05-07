@@ -1,21 +1,29 @@
-<div class="pt-5" style="position: relative; top: 40px; left: 50px;">
-	<h2> Rate this product and give your feedback </h2>
-	<%= form_for @review do |f| %>
-		<% if @review.errors.any? %>
-			<% @review.errors.full_messages.each do |message| %>
-			<h4 class="alert-danger"> <%= message %> </h4>
+
+<div class="pt-5">
+	<div class="pt-5">
+	<h1 style="text-align: center;"><strong> Оцініть виконання вашого завдання </strong></h1>
+		<div>
+			<%= form_for @review do |f| %>
+				<% if @review.errors.any? %>
+					<% @review.errors.full_messages.each do |message| %>
+					<h4 class="alert-danger"> <%= message %> </h4>
+					<% end %>
+				<% end %>
+
+
+			<%= f.hidden_field :user_id %>
+			<%= f.hidden_field :task_id %>
+			<div class="container" style="width: 50%;">
+				<div class="card shadow">
+	  				<div class="card-body" style="background: #cccccc;">
+	  					<div style="text-align: center;font-size:200%;">
+							<%= f.select :rating, [*1..5], :prompt => 'Оберіть вашу оцінку' %></br></br>
+							<%= f.submit%>
+						</div>
+					</div>
+				</div>
 			<% end %>
-		<% end %>
-
-
-	<div>
-		<%= f.label :rating %>
-		<%= f.select :rating, [*1..5], :prompt => 'Select' %>
+			</div>
+		</div>
 	</div>
-	<br>
-
-	<%= f.hidden_field :user_id %>
-	<%= f.hidden_field :task_id %>
-	<div><%= f.submit %></div>
-<% end %>
 </div>

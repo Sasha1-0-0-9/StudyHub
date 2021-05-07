@@ -82,50 +82,67 @@
 <div id="footer">
       <div class="footer">
 
-    <footer class="bg-dark text-center text-white">
-      <!-- Grid container -->
-      <%= link_to "Потрібна допомога?", new_contact_path, class: "btn btn-success"%>  
+    <footer class="bg-dark  text-white">
+      <!-- Grid container --> 
+
       <div class="container p-4 pb-0">
         <!-- Section: Social media -->
-        <section class="mb-4">
+         
+
+        <section class="mb-2">
           <!-- Facebook -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
+          <div class="row">
+            <div class="col-4">
+            <a class="navbar-brand" href="/"><strong><span style="color: #FFFFFF;">Study</span><span style="color: #018c4b;">Hub</span></strong></a></br>
+            <%= link_to "Потрібна допомога?", new_contact_path, class: "btn btn-outline-light btn-floating m-1", style: "text-align: left;"%>  
+            </div>
 
-          <!-- Twitter -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-twitter"></i
-          ></a>
+            <div class="col-4 text-center p-4">
+            <a class="btn btn-outline-light  btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
 
-          <!-- Google -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-google"></i
-          ></a>
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-twitter"></i
+            ></a>
 
-          <!-- Instagram -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-instagram"></i
-          ></a>
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-google"></i
+            ></a>
 
-          <!-- Linkedin -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-instagram"></i
+            ></a>
 
-          <!-- Github -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-github"></i
-          ></a>
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+          <div class="col-4 p-3" style="text-align: right;">
+            <i class="fab fa-cc-paypal" style="font-size: 70px;"></i>&emsp;
+           <i class="fab fa-cc-visa" style="font-size: 70px;"></i>
+
+
+          </div>
+
+          </div>
         </section>
         <!-- Section: Social media -->
       </div>
       <!-- Grid container -->
 
       <!-- Copyright -->
-      <div class="text-center p-3">
-        © 2020 Copyright:
-        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      <div class="text-center">
+        © 2020
       </div>
       <!-- Copyright -->
     </footer>
