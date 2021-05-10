@@ -20,26 +20,26 @@
   <div class="pt-3">
     <div class="col-4 pt-1">
   <% if @user == current_user %>
-  <div class="d-flex justify-content-left"><%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %></div>
+  <div class="d-flex justify-content-left"><%= link_to "Редагувати профіль", edit_user_registration_path, class: "btn btn-success" %></div>
   <% end %>
 </div>
 </div>
 </div>
 
 <hr>
-<h4 class="d-flex justify-content-center"> Історія </h4>
+<h4 class="d-flex justify-content-center"> Мої роботи </h4>
 
 <table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Task_id</th>
-      <th scope="col">Task</th>
-      <th scope="col">Client</th>
-      <th scope="col">Implementer</th>
+      <th scope="col">Номер замовлення</th>
+      <th scope="col">Назва роботи</th>
+      <th scope="col">Виконавець</th>
+      <th scope="col">Замовник</th>
       
-      <th scope="col">Status</th>
-      <th scope="col">Result</th>
-      <th scope="col">Confirm</th>
+      <th scope="col">Статус</th>
+      <th scope="col">Результат</th>
+      <th scope="col">Підтвердити</th>
       <th ></th>
     </tr>
   </thead>
@@ -50,12 +50,13 @@
     <tr>
       <td><%= order.task_id %></td>
       <td><%= link_to order.task.title, task_path(order.task)%></td>
-      <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
-      <% if order.status == "in_progress" or order.status == "done"%>
+            <% if order.status == "in_progress" or order.status == "done"%>
       <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
       <%else%>
       <td>Це завдання ще ніхто не виконує</td>
       <% end %>
+      <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
+
       <td><%= order.status_ua %></td>
       <% if order.task.file.present? %>
         <td><%= link_to 'Download' , order.task.file, download: '' %>

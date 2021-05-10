@@ -1,6 +1,6 @@
 <div class="pt-5" style="text-align: left;">
   
-  <h1 style="color: black;"><strong>Створити нове завдання</strong></h1>
+  <h1 style="color: black;"><strong>Оформлення замовлення</strong></h1>
 <%= form_with(model: task) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
@@ -15,17 +15,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :Категорія %>:</br>
+    <%= form.label :Предмет %>:</br>
     <%= form.select :category_id, options_from_collection_for_select(@subcategories, :id, :title)%>
   </div>
  
   <div class="field">
-    <%= form.label :Заголовок %>:</br>
+   <p>Назва роботи:</p>
     <%= form.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <p>Опис завдання:</p> 
+    <p>Опис:</p> 
     <%= form.text_area :description, class: 'form-control', rows: "3" %>
   </div>
   <br>
@@ -34,25 +34,22 @@
 
   <div class="col-2">
   <div class="field">
-    <p>Рrice:</p>
-    <%= form.text_field :price, class: 'form-control', placeholder: "100" %></br></br>
+    <p>Ціна:</p>
+    <%= form.text_field :price, class: 'form-control', placeholder: "вкажіть ціну в грн" %></br></br>
   </div>
   <div class="field">
-    <p>Дедлайн </p> 
+    <p>Виконати до:</p> 
     <%= form.date_field :deadline %>
   </div>
   <br>
         <div class="field">
-    <p>Прикріпити файл </p> 
+    <p>Вкласти файл: </p> 
     <%= form.file_field :additional_file %>
   </div>
 </br>
   <div class="actions">
-      <%= form.submit "Створити завдання",class: 'btn btn-success' %></br></br>
+      <%= form.submit "Відправити",class: 'btn btn-success' %></br></br>
     </div>
-
-
-      <%= link_to 'Back', root_path ,{:style=>'color:#FFFFFF;text-decoration:none; text-align: center;', :class => "btn btn-success"}%>
 </div>
 <% end %>
 </div>

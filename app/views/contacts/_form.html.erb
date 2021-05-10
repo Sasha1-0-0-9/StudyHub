@@ -1,5 +1,5 @@
 <div class="pt-5">
-<h1 class="pt-5" align="center"><strong>Тех. підтримка</strong></h1>
+<h1 class="pt-5" align="center"><strong>Поставити запитання</strong></h1>
     <div class="container">    
         <div class="card shadow mb-3">
             <div class="card-body" style="background: #cccccc;">
@@ -8,17 +8,17 @@
                       <%= form_for @contact do |f| %>
 
                         <div class="field">
-                            <%= f.label :Тема %><br>
+                            <p>Тема запитання</p>
                             <%= f.text_field :subject, :required => true %>
                         </div>
 
                         <div class="field">
-                        <%= f.label :Запитання %><br>
+                        <p>Текст запитання</p>
                         <%= f.text_area :message,class: 'form-control', :as => :text, :required => true , rows: "3"%>    
                         </div>
 
                         <div class="field">
-                        <%= f.label :Email %><br>
+                        <p>Email для зв'язку</p>
                         <%= f.email_field :email, :required => true %>
                         </div>
                         <br>

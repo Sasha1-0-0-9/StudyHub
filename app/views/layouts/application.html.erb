@@ -37,7 +37,7 @@
                   <% if current_user %>
                                   <% if current_user.role == 'student' %>
                                   
-                    <strong><%= link_to 'Create a task', new_task_path, class: 'nav-link active'%></strong>
+                    <strong><%= link_to 'Створити завдання', new_task_path, class: 'nav-link active'%></strong>
                 
                     <% end %>
                     <% end %>
@@ -45,7 +45,7 @@
               </div>
                         <% if current_user %>
                         <%= link_to current_user.email, profile_user_path(current_user), class: 'btn btn-success btn-sm'%>&emsp;
-                    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-success text-end btn-sm'%>
+                    <%= link_to 'Вихід', destroy_user_session_path, method: :delete, class: 'btn btn-outline-success text-end btn-sm'%>
                   <% else %>
                   <div style="right: 1000px;">
                    <%= link_to 'Вхід',new_user_session_path,class: 'btn btn-success btn-sm'%>
@@ -94,7 +94,7 @@
           <div class="row">
             <div class="col-4">
             <a class="navbar-brand" href="/"><strong><span style="color: #FFFFFF;">Study</span><span style="color: #018c4b;">Hub</span></strong></a></br>
-            <%= link_to "Потрібна допомога?", new_contact_path, class: "btn btn-outline-light btn-floating m-1", style: "text-align: left;"%>  
+            <%= link_to "Зворотній зв'язок", new_contact_path, class: "btn btn-outline-light btn-floating m-1", style: "text-align: left;"%>  
             </div>
 
             <div class="col-4 text-center p-4">
@@ -142,7 +142,7 @@
 
       <!-- Copyright -->
       <div class="text-center">
-        © 2020
+        StudyHub © 2021
       </div>
       <!-- Copyright -->
     </footer>

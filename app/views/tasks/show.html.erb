@@ -21,20 +21,20 @@
 		  <%= @task.price %>
 		</p>
 		<p>
-		  <strong>Дедлайн:</strong>
+		  <strong>Виконати до:</strong>
 		  <%= @task.deadline %>
 		</p>
 		 <% if Order.where(task_id: @task, status: 0).present? and current_user.role == 'implementer' %>
 		 <% if !Order.where(implementer_id: current_user, status: 1).present? %>
 
-		<div><%= link_to 'Претендувати на це завдання', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
+		<div><%= link_to 'Відправити пропозицію', new_comment_path(user_id: current_user, task_id: @task), method: :get, class: 'btn btn-success' %></div>
 		<% #elsif !@task.file.present? %>
 		<%#= link_to 'Edit', edit_task_path(@task) %>
 			
 		<% end %>
 		<% end %>
 		<% if !@task.file.present? and Order.where(task_id: @task, implementer_id: current_user).present? %>
-		<%= link_to 'Upload file', edit_task_path(@task), :class => 'btn btn-success', :style =>'text=text-decoration: none;'%>
+		<%= link_to 'Завантажити відповідь', edit_task_path(@task), :class => 'btn btn-success', :style =>'text=text-decoration: none;'%>
 		<br>
 		<%# else %>
 		<td><%#= link_to 'Download' , @task.file, download: '' %>

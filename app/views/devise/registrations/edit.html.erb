@@ -13,7 +13,7 @@
 <div class="container">
   <div class="class="pt-5" style="text-align: center">
     <br>
-    <h2 class="pt-5">Edit <%= resource_name.to_s.humanize %></h2>
+    <h2 class="pt-5">Особиста інформація</h2>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -56,6 +56,13 @@
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
+                <div class="field">
+          <%= f.label "Мої навички:"%>
+          <%= f.text_area :description, class: 'form-control', rows: "3" %>
+        </div>
+
+      </br>
+
         <div class="field">
           
           <%= f.password_field :password, autocomplete: "new-password" %>
@@ -73,12 +80,7 @@
         </div>
 
 
-        <div class="field">
-          <%= f.label "Про себе:"%>
-          <%= f.text_area :description, class: 'form-control', rows: "3" %>
-        </div>
 
-      </br>
      
 
         <div class="field">
@@ -88,16 +90,12 @@
         </div>
 
         <div class="actions">
-        <%= f.submit "Оновити інформацію"%>
+        <%= f.submit "Зберегти"%>
         </div>
         <% end %>
-      </div>
+      </br>
+              <%= button_to "Видалити обліковий запис", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
 
-      <div class="col-4 pt-1" style="text-align: right;">
-        <h3>Cancel my account</h3>
-        <%= button_to "Видалити мій акаунт", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
-        </br>
-        <%= link_to "Попередня сторінка", :back , {:style=>'text-decoration:none;', :class => "btn btn-success"}%>
       </div>
     </div>
   </div>

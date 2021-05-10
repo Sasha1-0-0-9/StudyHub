@@ -14,15 +14,14 @@
         	 <%# if current_user.present? %>
            <% if current_user.role == "student" and current_user.id == @task.author_id %>
            <% if Order.where(task_id: @task, status: 0).present? %>
-           <%= button_to 'Доручити', appoint_order_path(task_id: @task.id, implementer_id: comment.user_id), method: :post, class: "btn btn-success" %>
+           <%= button_to 'Прийняти', appoint_order_path(task_id: @task.id, implementer_id: comment.user_id), method: :post, class: "btn btn-success" %>
            <%#= button_to "Give", order_appoint_path(Order.where(task_id: @task).ids),class: 'btn btn-success' %>
            <%#= link_to 'Give', appoint_order_path(@task, comment.user_id),class: 'btn btn-success' %>
            <% else %>
-           <i class="fa fa-times" aria-hidden="true">Not available</i>
+           <i class="fa fa-times" aria-hidden="true">Не доступно</i>
            <%end %>
            <% end %>
 	        	<% if current_user.email == comment.user.email %>
-	        		<%= link_to (fa_icon "pencil"), edit_comment_path(comment), class: "btn btn-outline-dark" %>
 	            	<%= link_to (fa_icon "trash-o"), comment_path(comment), method: :delete, class: "btn btn-outline-dark",
 	                              data: {confirm: 'Confirm delete your comment?'} %>
 	             <% end %>
