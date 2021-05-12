@@ -1,9 +1,0 @@
-try{
-ei("pm_doc_url_service");
-var Mmb=function(){};Mmb.prototype.getUrl=function(a){a=gE[a];return null!=a?fE(a):""};Mmb.\u0275prov=Jc({factory:function(){return new Mmb},token:Mmb,providedIn:"root"});var Nmb={DocUrlService:Mmb},Omb=function(){};
-Md("jsmod_doc_url_service",se(Omb,function(){return zd([u(512,Qg,$n,[[8,[]],[3,Qg],eo]),u(1073742336,Omb,Omb,[]),u(256,ut,Nmb,[])])}));
-
-fi();
-
-}catch(e){_DumpException(e)}
-// Google Inc.
