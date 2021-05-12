@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :comments
 
   # devise_for :users#, ActiveAdmin::Devise.config
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
   ActiveAdmin.routes(self)
   resources :categories do
     resources :tasks

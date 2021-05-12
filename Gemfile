@@ -15,8 +15,12 @@ gem 'rails_12factor'
 gem 'ratyrate'
 
 # Plus integrations with:
+gem 'activerecord-session_store'
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'omniauth'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'font-awesome-rails'

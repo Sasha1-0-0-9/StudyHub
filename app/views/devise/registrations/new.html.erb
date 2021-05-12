@@ -10,20 +10,20 @@ outline-width: 0;}
 
 
 <div class="pt-5" style='text-align: center'>
-<h2 class="pt-5" style="font-size: 95px; color: black;"><strong><span style="color: #000000;">Sign</span><span style="color: #018c4b;">Up</span></strong></h2>
+<h2 class="pt-5" style="font-size: 75px; color: black;"><strong><span style="color: #000000;">Реєстрація</span></strong></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <!-- !!!!!!!!!!!!!!!!!CUT!!!!!!!!!!!!!!!!!!!!!!! -->
   <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
   <div class="field">  
-  <%= f.label :first_name%></br>    
+  <%= f.label :first_name, "Ім'я"%></br>    
       <%= f.text_field :first_name , autocomplete: "first name", class: 'aaa' %>
       
   </div>
 
   <div class="field">
-      <%= f.label :last_name%></br>   
+      <%= f.label :last_name, "Прізвище"%></br>   
     <%= f.text_field :last_name , autocomplete: "last name", class: 'aaa'%>
   
   </div>
@@ -35,21 +35,21 @@ outline-width: 0;}
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, "Пароль" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> символів мінімум)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password", class: 'aaa' %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation , "Підтвердження пароля"%><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'aaa' %>
   </div>
   <br>
-  <%= f.select :role, User.roles.keys.to_a, :prompt => 'Select', class: 'nav-link dropdown-toggle' %>
+  <%= f.select :role, User.roles.keys.to_a, :prompt => 'Вибрати тип юзера', class: 'nav-link dropdown-toggle' %>
   <div class="actions pt-3">
-    <%= f.submit "Sign up", class: 'btn btn-success' %>
+    <%= f.submit "Реєстрація", class: 'btn btn-success' %>
   </div>
 <% end %>
 <%= render "devise/shared/links" %>
