@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/faq', to: 'pages#faq'
   get '/about', to: 'pages#about'
   resources :tasks do
-    resources :orders # s, only: %i[create update]
+    resources :orders
   end
 
   resources :comments
@@ -18,24 +18,15 @@ Rails.application.routes.draw do
   resources :orders do
     member do
       post '/appoint', to: 'orders#appoint', as: 'appoint'
-
-      # get 'appoint_order'
       get 'complete'
     end
   end
-
-  resources :orders
-  # resources :users do
-
-  # end
 
   resources :categories do
     member do
       get 'show_tasks'
     end
   end
-  # get '/show', to: 'users#show'
-
   resources :contacts
 
   resources :users do
@@ -46,7 +37,6 @@ Rails.application.routes.draw do
   end
 
   resources :reviews
-  # get 'users/:id', to: 'users#show'
   root 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

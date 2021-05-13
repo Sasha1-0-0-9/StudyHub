@@ -19,8 +19,6 @@ class TasksController < InheritedResources::Base
 
   def update
     @task = Task.find(params[:id])
-    # @task.order = Order.find(params[:task][:order_id])
-    # @task.category = Category.find(params[:task][:category_id])
     if @task.update(task_params)
       flash[:success] = 'Comment successfully updated!'
     else

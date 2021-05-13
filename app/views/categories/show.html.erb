@@ -1,28 +1,7 @@
+<%= stylesheet_link_tag 'categories' %>
 
-<style>
-  html {
-
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-.image {
-  position  : relative;
-  width   : 100%; /* for IE 6 */
-}
-
-
-  .hrBar
-{
-  background-image: url(<%= asset_path 'Frame4.png'%>);
-  background-size: cover;
-
-}
-</style>
-
-<body class="hrBar">
+<body class="hrBar" style="  background-image: url(<%= asset_path 'Frame4.png'%>);
+  background-size: cover;">
   <div class="container pt-5">
     <div class="row">
     <% Category.children_of(@category).each do |sub_category| %>

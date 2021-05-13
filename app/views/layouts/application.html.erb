@@ -35,7 +35,7 @@
                     <a class="nav-link" aria-current="page" href="/faq"><strong>FAQ</strong></a>
                   </li>
                   <% if current_user %>
-                                  <% if current_user.role == 'student' %>
+                                  <% if current_user.role == 'customer' %>
                                   
                     <strong><%= link_to 'Створити завдання', new_task_path, class: 'nav-link active'%></strong>
                 

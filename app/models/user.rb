@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum role: %i[student implementer]
+  enum role: %i[customer contractor]
   include EnumTranslatable
 
   has_one_attached :avatar
@@ -22,7 +22,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.role = 'student'
+      user.role = 'customer'
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
     end
