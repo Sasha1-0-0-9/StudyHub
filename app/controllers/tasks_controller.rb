@@ -9,7 +9,7 @@ class TasksController < InheritedResources::Base
     @task = Task.new(task_params.merge(author_id: current_user.id))
     @task.category = Category.find(params[:task][:category_id])
     if @task.save
-      @active_order = Order.create!(client_id: current_user.id, status: 0, task_id: @task.id)
+      @active_order = Order.create(client_id: current_user.id, status: 0, task_id: @task.id)
       # @active_order = Order.where(task_id: @task, status: 0)
       redirect_to @task, notice: 'Post was successfully created.'
     else

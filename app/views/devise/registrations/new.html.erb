@@ -1,21 +1,10 @@
-<style>
-.aaa{
-  font-size:23px;
-height: 100%;
-opacity: 0.46;
-border-radius: 10px;
-background: #8E90A6;
-outline-width: 0;}
-</style>
-
+<%= stylesheet_link_tag 'registration' %>
 
 <div class="pt-5" style='text-align: center'>
 <h2 class="pt-5" style="font-size: 75px; color: black;"><strong><span style="color: #000000;">Реєстрація</span></strong></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <!-- !!!!!!!!!!!!!!!!!CUT!!!!!!!!!!!!!!!!!!!!!!! -->
-  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
   <div class="field">  
   <%= f.label :first_name, "Ім'я"%></br>    
       <%= f.text_field :first_name , autocomplete: "first name", class: 'aaa' %>

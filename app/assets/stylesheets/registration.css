@@ -1,0 +1,13 @@
+.aaa{
+  font-size:23px;
+height: 100%;
+opacity: 0.46;
+border-radius: 10px;
+background: #8E90A6;
+outline-width: 0;}
+
+.field:after {
+    content:" *";
+    color: red;
+  
+}

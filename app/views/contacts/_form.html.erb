@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'registration' %>
 <div class="pt-5">
 <h1 class="pt-5" align="center"><strong>Поставити запитання</strong></h1>
     <div class="container">    
@@ -8,7 +9,7 @@
                       <%= form_for @contact do |f| %>
 
                         <div class="field">
-                            <p>Тема запитання</p>
+                            <p>Тема запитання </p>
                             <%= f.text_field :subject, :required => true %>
                         </div>
 
