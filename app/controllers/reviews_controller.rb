@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-  # before_action :set_review, only: %i[edit update destroy]
   def new
     @review = Review.new(user_id: params[:user_id], task_id: params[:task_id])
   end

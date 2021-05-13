@@ -10,8 +10,8 @@ class TasksController < InheritedResources::Base
     @task.category = Category.find(params[:task][:category_id])
     if @task.save
       @active_order = Order.create(client_id: current_user.id, status: 0, task_id: @task.id)
-      # @active_order = Order.where(task_id: @task, status: 0)
-      redirect_to @task, notice: 'Post was successfully created.'
+      redirect_to @task
+      flash[:success] = 'Task was successfully created.'
     else
       render :new
     end
@@ -33,6 +33,21 @@ class TasksController < InheritedResources::Base
     @task = Task.find(params[:id])
     @comment = @task.comments
     @review = @task.reviews
+    @order_task = Order.where(task_id: @task.id)
+    @free_order = Order.where(task_id: @task.id, status: 0)
+    @completed_order = Order.where(task_id: @task, client_id: current_user, status: 'done')
+
+    @unpermitted = if @free_order.present? && !Order.where(implementer_id: current_user, status: 1).present?
+                     false
+                   else
+                     true
+                   end
+
+    @allow_upload = if Order.where(task_id: @task, implementer_id: current_user).present? && !@task.file.present?
+                      true
+                    else
+                      false
+                    end
   end
 
   private

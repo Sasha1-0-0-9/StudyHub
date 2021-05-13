@@ -8,11 +8,11 @@ class Task < ApplicationRecord
   validates_presence_of :title, :description, :price
 
   def rating
-    if reviews.count == 0
-      quantity = 1
-    else
-      quantity = reviews.count
-    end
+    quantity = if reviews.count == 0
+                 1
+               else
+                 reviews.count
+               end
     reviews.sum(&:rating) / quantity
   end
 end

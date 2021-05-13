@@ -5,4 +5,12 @@ class Order < ApplicationRecord
 
   enum status: %i[active in_progress done]
   include EnumTranslatable
+
+  def allowed_to_take
+    if !Order.where(implementer_id: current_user, status: 1).present?
+      true
+    else
+      false
+    end
+  end
 end

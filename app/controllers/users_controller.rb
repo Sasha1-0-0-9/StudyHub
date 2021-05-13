@@ -5,34 +5,24 @@ class UsersController < ApplicationController
     @user = User.all
   end
 
-  def profile; end
-
   def save_profile
     @user.update(user_params)
     redirect_to root_path
   end
 
   def rating
-    arr = Order.where(implementer_id: @user).ids
-    exc = []
+    arr = Order.where(implementer_id: @user, status: 'done').ids # отримуєм масив з айді виконаних замовлень юзера
     marks = []
-    arr.each do |id|
-      exc << Order.find(id).task.id
-    end
-
-    exc.each do |qqq|
-      mark = Task.find(qqq).rating
+    arr.each do |id| # в циклі перевіряємо завдання, які було оцінено, і вносимо оцінку до масивy marks
+      mark = Task.find(Order.find(id).task.id).rating
       marks << mark if mark > 0
     end
-
-    if @user.role == 'implementer'
-      @user.rating = if marks.empty?
-                       0
-                     else
-                       marks.sum / marks.size
-                     end
-      @user.update(rating: @user.rating)
-    end
+    @user.rating = if marks.empty?
+                     0
+                   else
+                     marks.sum / marks.size
+                   end
+    @user.update(rating: @user.rating)
   end
 
   private

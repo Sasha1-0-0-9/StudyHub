@@ -7,9 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def appoint
-    task_id = params[:task_id]
-    implementer = params[:implementer_id]
-    Order.where(task_id: task_id).update(implementer_id: implementer, status: 1)
+    Order.where(task_id: params[:task_id]).update(implementer_id: params[:implementer_id], status: 1)
     redirect_to root_path
   end
 
