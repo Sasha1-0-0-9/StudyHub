@@ -7,7 +7,7 @@ class Task < ApplicationRecord
 
 
   validates :price, numericality: { greater_than: 0 }
-  validates_presence_of :title, :description, :price
+  validates_presence_of :title, :description, :price, :deadline
 
   def rating
     quantity = if reviews.count == 0
