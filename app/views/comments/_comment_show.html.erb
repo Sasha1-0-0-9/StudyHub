@@ -11,7 +11,7 @@
       <div class="card-body">
         <p class="card-text"><%= comment.body %></p>
         <div style="text-align: center;">
-           <% if current_user.role == "student" and current_user.id == @task.author_id %>
+           <% if current_user.role == "customer" and current_user.id == @task.author_id %>
            <% if @free_order.present? %>
            <%= button_to 'Прийняти', appoint_order_path(task_id: @task.id, implementer_id: comment.user_id), method: :post, class: "btn btn-success" %>
            <% else %>

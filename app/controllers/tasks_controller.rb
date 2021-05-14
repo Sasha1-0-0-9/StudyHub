@@ -36,9 +36,9 @@ class TasksController < InheritedResources::Base
     @completed_order = Order.where(task_id: @task, client_id: current_user, status: 'done')
 
     @unpermitted = if @free_order.present? && !Order.where(implementer_id: current_user, status: 1).present?
-                     false
-                   else
                      true
+                   else
+                     false
                    end
 
     @allow_upload = if Order.where(task_id: @task, implementer_id: current_user).present? && !@task.file.present?

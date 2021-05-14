@@ -64,14 +64,13 @@
           <td><p><%= link_to 'Show task', task_path(order.task) %></p></td>
       <% end %>
 
-      <% if order.status == 'in_progress' and order.implementer_id == current_user.id %>
+      <% if order.status == 'in_progress' and order.client_id == current_user.id %>
       <td><h5>Please complete the task </h5></td>
       <% if order.task.file.present? %>
-     <td><%= link_to "Confirm", complete_order_path(order), class: 'btn btn-success' %></td>
+     <td><%= link_to "Підтвердити виконання", complete_order_path(task_id: order.task.id), class: 'btn btn-success' %></td>
      <%end%>
         <% elsif order.status == 'done' and order.implementer_id == current_user.id %>
         <td><h5>Task has been completed </h5></td>
-            <!--<td><#%= button_to "New", action: "complete", remote: true %></td>-->
         <% else %>
             <td><h5>Complete task to confirm</h5></td>
       <%end%>
