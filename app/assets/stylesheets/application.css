@@ -28,3 +28,7 @@ width:100%;
     box-shadow: 0 0 7px #666; /* Параметры тени */
 
    }
+
+.req{
+  color: red;
+}

@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.create(contact_params)
-    ContactMailer.complete_form.deliver_now
+    #ContactMailer.complete_form.deliver_now
     flash[:notice] = 'Дякуємо за звернення. Ми обовʼязково звʼяжемось з вами пізніше!'
     redirect_to root_path
   end

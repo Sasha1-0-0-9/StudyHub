@@ -5,13 +5,13 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :comments
   has_many :reviews
-  validates :role, presence: true
+  validates :role, :first_name, :last_name, presence: true
 
   def avatar_thumbnail
     if avatar.attached?
       avatar.variant(resize: '150x150!').processed
     else
-      'https://freepikpsd.com/wp-content/uploads/2019/10/default-avatar-png-3-Transparent-Images.png'
+      'ava.png'
     end
   end
 

@@ -15,17 +15,17 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :Предмет %>:</br>
+    <%= form.label "Предмет" %>: <nobr class="req">*</nobr></br>
     <%= form.select :category_id, options_from_collection_for_select(@subcategories, :id, :title)%>
   </div>
  
   <div class="field">
-   <p>Назва роботи:</p>
+   <p>Назва роботи: <nobr class="req">*</nobr></p>
     <%= form.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <p>Опис:</p> 
+    <p>Опис: <nobr class="req">*</nobr></p>
     <%= form.text_area :description, class: 'form-control', rows: "3" %>
   </div>
   <br>
@@ -34,11 +34,11 @@
 
   <div class="col-2">
   <div class="field">
-    <p>Ціна:</p>
+    <p>Ціна: <nobr class="req">*</nobr></p>
     <%= form.text_field :price, class: 'form-control', placeholder: "вкажіть ціну в грн" %></br></br>
   </div>
   <div class="field">
-    <p>Виконати до:</p> 
+    <p>Виконати до: <nobr class="req">*</nobr></p>
     <%= form.date_field :deadline %>
   </div>
   <br>
