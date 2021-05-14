@@ -1,89 +1,37 @@
-<div class="container">
-  <div class="pt-5">
+<!-- TODO -->
+<div class="pt-5">
   <br>
-    <div class="row">
-      <div class="col-2 pt-1">
-        <%= image_tag(@user.avatar_thumbnail, {:class => "round"})%>
-      </div>
-      <div class="col-4 pt-1">
-        <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-        <p><%= @user.description %></p>
-          <% @user.rating.to_i.times do %>
-          <i class="fa fa-star" style="color: #ffde00"></i>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  
-  
-<div class="row">
-  <div class="pt-3">
-    <div class="col-4 pt-1">
-  <% if @user == current_user %>
-  <div class="d-flex justify-content-left"><%= link_to "Редагувати профіль", edit_user_registration_path, class: "btn btn-success" %></div>
-  <% end %>
-</div>
-</div>
+<h1><%= @user.email %></h1>
+    <%= image_tag(@user.avatar_thumbnail) %>
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
 </div>
 
-<hr>
-<h4 class="d-flex justify-content-center"> Мої роботи </h4>
+<h5> History </h5>
 
 <table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Номер замовлення</th>
-      <th scope="col">Назва роботи</th>
-      <th scope="col">Виконавець</th>
-      <th scope="col">Замовник</th>
-      
-      <th scope="col">Статус</th>
-      <th scope="col">Результат</th>
-      <th scope="col">Підтвердити</th>
+      <th scope="col">Client</th>
+      <th scope="col">Implementer</th>
+      <th scope="col">Task</th>
+      <th scope="col">Status</th>
       <th ></th>
     </tr>
   </thead>
 
   <tbody>
 
-  <% @orderlist.each do |order| %>
-    <tr>
-      <td><%= order.task_id %></td>
-      <td><%= link_to order.task.title, task_path(order.task)%></td>
-            <% if order.status == "in_progress" or order.status == "done"%>
-      <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
-      <%else%>
-      <td>Це завдання ще ніхто не виконує</td>
-      <% end %>
-      <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
-
-      <td><%= order.status_ua %></td>
-      <% if order.task.file.present? %>
-        <td><%= link_to 'Завантажити' , order.task.file, download: '' %>
-          <% else %>
-          <td><p><%= link_to 'Show task', task_path(order.task) %></p></td>
-      <% end %>
-
-      <% if order.client_id == current_user.id %>
-      <% if order.status == 'in_progress' %>
-      <td><h5>Завдання виконується </h5></td>
-      <% if order.task.file.present? %>
-     <td><%= link_to "Підтвердити виконання", complete_order_path(task_id: order.task.id), class: 'btn btn-success' %></td>
-     <%end%>
-        <% elsif order.status == 'done' and order.client_id == current_user.id %>
-        <td><h5>Завдання виконано </h5></td>
-        <% else %>
-            <td><h5>Завдання поки що ніхто не виконує</h5></td>
-            <%end%>
-      <%else%>
-      <%if order.status == 'in_progress'%>
-      <td><h5>Завдання виконується </h5></td>
-      <%else%>
-      <td><h5>Завдання виконано </h5></td>
-      <%end%>
-      <%end%>
+<% Order.where(client_id: @user.id).or(Order.where(implementer_id: @user.id)).each do |order| %>
+ <tr>
+        <td><%= link_to User.find(order.client_id).email , profile_user_path(order.client_id), class: 'nav-link'%></td>
+        <td><%= link_to User.find(order.implementer_id).email , profile_user_path(order.implementer_id), class: 'nav-link'%></td>
+        <td><%= order.task_id %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to 'Show', Task.find(order.task_id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-</div>
+
+
+<%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-success" %>
