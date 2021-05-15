@@ -5,7 +5,6 @@ class Task < ApplicationRecord
   has_many :comments
   has_many :reviews
 
-
   validates :price, numericality: { greater_than: 0 }
   validates_presence_of :title, :description, :price, :deadline
 

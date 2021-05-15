@@ -5,5 +5,4 @@ class Order < ApplicationRecord
 
   enum status: %i[active in_progress done]
   include EnumTranslatable
-
 end

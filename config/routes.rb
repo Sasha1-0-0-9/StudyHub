@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  # devise_for :users#, ActiveAdmin::Devise.config
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
   ActiveAdmin.routes(self)
   resources :categories do
@@ -38,5 +37,4 @@ Rails.application.routes.draw do
 
   resources :reviews
   root 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
