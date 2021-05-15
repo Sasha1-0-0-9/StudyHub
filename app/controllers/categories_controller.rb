@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   def show_tasks
     @is_empty = true
     @tasks = Task.where(category_id: params[:id])
-    @is_empty = false if @category.tasks.present? and @free_order.present?
+    @is_empty = false if @category.tasks.present?
   end
 
   def new
